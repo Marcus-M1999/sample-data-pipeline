@@ -1,0 +1,368 @@
+raw_players = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","proj2").option("startingOffsets", "earliest").option("endingOffsets", "latest").load() 
+testing_data = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","proj2").option("startingOffsets", "earliest").option("endingOffsets", "latest").load() 
+test_data.cache()
+testing_data.cache()
+testing_data.printSchema()
+testing_data_string = testing_data.select(testing_data.value.cast('string'))
+testing_data_string.show()
+exit()
+messages = spark \
+  .read \
+  .format("kafka") \
+  .option("kafka.bootstrap.servers", "kafka:29092") \
+  .option("subscribe","foo") \
+  .option("startingOffsets", "earliest") \
+  .option("endingOffsets", "latest") \
+messages = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","proj2").option("startingOffsets", "earliest").option("endingOffsets", "latest").load() 
+messages.show()
+messages_as_strings=messages.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+messages_as_strings.show()
+messages_as_strings.select('value').take(1)[0].value
+exit()
+7/6/21
+exit()
+raw_data = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","proj2").option("startingOffsets", "earliest").option("endingOffsets", "latest").load()
+raw_data.show()
+data_as_strings=raw_data.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+data_as_strings.select('value').take(1)[0].value
+Import json
+import json
+json.loads(data_as_strings.select('value').take(2)[0].value)
+data_as_strings.cache()
+data_as_strings.show()
+import sys
+sys.stdout = open(sys.stdout.fileno(), mode='w', encoding='utf8', buffering=1)
+data_as_strings.rdd.map(lambda x: json.loads(x.value)).toDF().show()
+from pyspark.sql import Row
+extracted_players = data_as_strings.rdd.map(lambda x: json.loads(x.value)).toDF()
+extracted_players.show()
+extracted_data = = data_as_strings.rdd.map(lambda x: json.loads(x.value)).toDF()
+extracted_data = data_as_strings.rdd.map(lambda x: json.loads(x.value)).toDF()
+extracted_data.show()
+extracted_data.write.parquet("/tmp/extracted_players")
+extracted_data.registerTempTable('ed_data')
+spark.sql("SELECT certification, exam_name, sequences, start_at, user_exam_id FROM ed_data LIMIT 10").show()
+extracted_data.cache()
+spark.sql("SELECT certification, exam_name, sequences, start_at, user_exam_id FROM ed_data LIMIT 10").show()
+extracted_data.printSchema()
+json.loads(data_as_strings.select('value').take(2)[0].value)
+spark.sql("SELECT certification, exam_name, start_at, user_exam_id FROM ed_data LIMIT 10").show()
+spark.sql("SELECT certification, exam_name, started_at, user_exam_id FROM ed_data LIMIT 10").show()
+
+spark.sql("SELECT sequences.questions FROM ed_data LIMIT 10").show()
+spark.sql("SELECT sequences.questions.user_incomplete FROM ed_data LIMIT 10").show()
+def extract_wine_details_from_json(row):
+    wines = json.loads(row.value)
+    details = {"id": ed_data["id"],
+                     "name": ed_dataes["name"],
+                     "seo_name": ed_data["seo_name"],
+                     "is_natural": ed_data["is_natural"],
+                     "winery_name": ed_data["winery"]["name"],
+                     "ratings_average": ed_data["statistics"]["ratings_average"],
+                     "ratinge_count": ed_data["statistics"]["ratings_count"]}
+    return Row(**details)
+def flatten_details_from_json(row):
+    wines = json.loads(row.value)
+    details = {"id": ed_data["id"],
+                     "name": ed_dataes["name"],
+                     "seo_name": ed_data["seo_name"],
+                     "is_natural": ed_data["is_natural"],
+                     "winery_name": ed_data["winery"]["name"],
+                     "ratings_average": ed_data["statistics"]["ratings_average"],
+                     "ratinge_count": ed_data["statistics"]["ratings_count"]}
+    return Row(**details)
+flatten_details_from_json(ed_data.sequences)
+spark.sql("SELECT sequences.questions.1 FROM ed_data LIMIT 10").show()
+spark.sql("SELECT sequences.questions FROM ed_data LIMIT 10").show()
+extracted_data.printSchema()
+spark.sql("SELECT * FROM ed_data LIMIT 10").show()
+table = spark.sql("SELECT * FROM ed_data")
+table.writeparquet("query_table")
+spark.sql("SELECT * FROM ed_data GROUP BY exam_name")
+spark.sql("SELECT DISTINCT exam_name, COUNT(user_exam_id) FROM ed_data GROUP BY exam_name")
+spark.sql("SELECT DISTINCT exam_name, COUNT(user_exam_id) FROM ed_data GROUP BY exam_name").show()
+spark.sql("SELECT DISTINCT exam_name, COUNT(user_exam_id) AS user_count FROM ed_data GROUP BY exam_name ORDER BY user_count").show()
+spark.sql("SELECT DISTINCT exam_name, COUNT(user_exam_id) AS user_count FROM ed_data GROUP BY exam_name ORDER BY user_count DESC").show()
+spark.sql("SELECT COUNT(*) AS user_count, DISTINCT LEFT(started_at, 6, 2) AS Month FROM ed_data GROUP BY LEFT(started_at, 6, 2), ORDER BY user_count")
+spark.sql("SELECT COUNT(*) AS user_count, DISTINCT SUBSTRING(started_at, 6, 2) AS Month FROM ed_data GROUP BY SUBSTRING(started_at, 6, 2), ORDER BY user_count")
+spark.sql("SELECT COUNT(*) AS user_count, DISTINCt, substring(started_at, 6, 2) AS Month FROM ed_data GROUP BY SUBSTRING(started_at, 6, 2), ORDER BY user_count")
+spark.sql("SELECT COUNT(*) AS user_count, DISTINCt, substring(started_at, 6, 2) AS Month FROM ed_data GROUP BY SUBSTRING(started_at, 6, 2) ORDER BY user_count DESC")
+spark.sql("SELECT COUNT(*) AS user_count, DISTINCT substring(started_at, 6, 2) AS Month FROM ed_data GROUP BY SUBSTRING(started_at, 6, 2) ORDER BY user_count DESC")
+spark.sql("SELECT COUNT(*) AS user_count, substring(started_at, 6, 2) AS Month FROM ed_data GROUP BY SUBSTRING(started_at, 6, 2) ORDER BY user_count DESC")
+spark.sql("SELECT COUNT(*) AS user_count, substring(started_at, 6, 2) AS Month FROM ed_data GROUP BY SUBSTRING(started_at, 6, 2) ORDER BY user_count DESC").show()
+spark.sql("SELECT COUNT(*) AS user_count, substring(started_at, 9, 2) AS Month FROM ed_data GROUP BY SUBSTRING(started_at, 9, 2) WHERE substring(started_at, 6, 2) = 11 ORDER BY user_count DESC").show()
+spark.sql("SELECT COUNT(*) AS user_count, substring(started_at, 9, 2) AS Month FROM ed_data GROUP BY SUBSTRING(started_at, 9, 2) WHERE substring(started_at, 6, 2) is 11 ORDER BY user_count DESC").show()
+spark.sql("SELECT COUNT(*) AS user_count, substring(started_at, 9, 2) AS Month FROM ed_data GROUP BY SUBSTRING(started_at, 9, 2) WHERE substring(started_at, 6, 2) is '11' ORDER BY user_count DESC").show()
+spark.sql("SELECT COUNT(*) AS user_count, substring(started_at, 9, 2) AS Month FROM ed_data WHERE substring(started_at, 6, 2) is '11' GROUP BY SUBSTRING(started_at, 9, 2) ORDER BY user_count DESC").show()
+spark.sql("SELECT COUNT(*) AS user_count, substring(started_at, 9, 2) AS Day FROM ed_data WHERE substring(started_at, 6, 2) is '11' GROUP BY SUBSTRING(started_at, 9, 2) ORDER BY user_count DESC").show()
+spark.sql("SELECT substring(started_at, 9, 2) AS Day, COUNT(*) AS Count FROM ed_data WHERE substring(started_at, 6, 2) is '11' GROUP BY SUBSTRING(started_at, 9, 2) ORDER BY user_count DESC").show()
+spark.sql("SELECT * FROM ed_data").show()
+spark.sql("SELECT COUNT(*) AS count, DISTINCT exam_name, certification FROM ed_data GROUP BY exam_name").show()
+spark.sql("SELECT COUNT(*) AS count, exam_name, certification FROM ed_data GROUP BY exam_name").show()
+spark.sql("SELECT COUNT(*) AS count, DISTINCT exam_name, certification FROM ed_data GROUP BY exam_name").show()
+spark.sql("SELECT COUNT(*) AS count, DISTINCT(exam_name), certification FROM ed_data GROUP BY exam_name").show()
+spark.sql("SELECT COUNT(*) AS count, DISTINCT exam_name, certification FROM ed_data GROUP BY exam_name").show()
+spark.sql("SELECT COUNT(certification) AS count, DISTINCT exam_name FROM ed_data GROUP BY exam_name").show()
+
+spark.sql("SELECT SUM(CASE WHEN certification = 'true' THEN 1 ELSE 0 END) AS count, DISTINCT exam_name FROM ed_data GROUP BY exam_name ORDER BY count").show()
+spark.sql("SELECT SUM(CASE WHEN certification = 'true' THEN 1 ELSE 0 END) AS count, exam_name FROM ed_data GROUP BY exam_name ORDER BY count").show()
+spark.sql("SELECT SUM(CASE WHEN certification = true THEN 1 ELSE 0 END) AS count, exam_name FROM ed_data GROUP BY exam_name ORDER BY count").show()
+exit()
+
+raw_data = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","proj2").option("startingOffsets", "earliest").option("endingOffsets", "latest").load()
+data_as_strings=raw_data.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+import json
+first_entry =json.loads(data_as_strings.select('value').take(1)[0].value)
+Import sys
+import sys
+sys.stdout = open(sys.stdout.fileno(), mode='w', encoding='utf8', buffering=1)
+from pyspark.sql import Row
+extracted_data = data_as_strings.rdd.map(lambda x: json.loads(x.value)).toDF()
+extracted_data.cache()
+extracted_data = data_as_strings.rdd.map(lambda x: json.loads(x.value)).toDF()
+data_as_strings.cache()
+extracted_data = data_as_strings.rdd.map(lambda x: json.loads(x.value)).toDF()
+exit()
+raw_data = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","proj2").option("startingOffsets", "earliest").option("endingOffsets", "latest").load()
+data_as_strings=raw_data.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+data_as_strings.cache()
+raw_data.cache()
+import json
+import sys
+sys.stdout = open(sys.stdout.fileno(), mode='w', encoding='utf8', buffering=1)
+from pyspark.sql import Row
+extracted_data = data_as_strings.rdd.map(lambda x: json.loads(x.value)).toDF()
+spark.sql("SELECT COUNT(*) FROM ed_data")
+extracted_data.registerTempTable('ed_data')
+spark.sql("SELECT COUNT(*) FROM ed_data")
+spark.sql("SELECT COUNT(*) FROM ed_data").show()
+spark.sql("SELECT DISTINCT exam_name, COUNT(user_exam_id) AS user_count FROM ed_data GROUP BY exam_name ORDER BY user_count ASC").show()
+json.loads(data_as_strings.select('value').take(2)[0].value)
+def extract_details_from_json(row):
+    student = json.loads(row.value)
+    qs = []
+    if "sequences" in attempts.keys():
+        if "questions" in attempts["sequences"].keys():
+            questions = attempts["sequences"]["questions"]
+    for i in qs:
+        student_details = {"question_id": i["id"],
+                           "question_incomplete": 100,
+                           "question_correct": 100,
+                           "question_submitted": 100,
+                           "base_exam_id": student["base_exam_id"],
+                           "exam_name": student["exam_name"],
+                           "user_exam_id": student["user_exam_id"],
+                           "started_time": student["started_at"]["ratings_count"]}
+        if "user_incomplete" in q.keys():
+            student_details["question_incomplete"] = i["user_incomplete"]
+        if "user_correct" in q.keys():
+            student_details["question_correct"] = i["user_correct"]
+        if "user_submitted" in q.keys():
+            student_details["question_submitted"] = i["user_submitted"]
+        qs.append(Row(**wines_details))
+def extract_details_from_json(row):
+    student = json.loads(row.value)
+    qs = []
+    if "sequences" in attempts.keys():
+        if "questions" in attempts["sequences"].keys():
+            questions = attempts["sequences"]["questions"]
+    for i in qs:
+        student_details = {"question_id": i["id"],
+                           "question_incomplete": 100,
+                           "question_correct": 100,
+                           "question_submitted": 100,
+                           "base_exam_id": student["base_exam_id"],
+                           "exam_name": student["exam_name"],
+                           "user_exam_id": student["user_exam_id"],
+                           "started_time": student["started_at"]["ratings_count"]}
+        if "user_incomplete" in q.keys():
+            student_details["question_incomplete"] = i["user_incomplete"]
+        if "user_correct" in q.keys():
+            student_details["question_correct"] = i["user_correct"]
+        if "user_submitted" in q.keys():
+            student_details["question_submitted"] = i["user_submitted"]
+        qs.append(Row(**wines_details))
+    return questions_rows
+extract_details_from_json(extracted_data).show()
+def extract_details_from_json(row):
+    student = json.loads(row.value)
+    qs = []
+    if "sequences" in attempts.keys():
+        if "questions" in attempts["sequences"].keys():
+            questions = attempts["sequences"]["questions"]
+    for i in qs:
+        student_details = {"question_id": i["id"],
+                           "question_incomplete": 100,
+                           "question_correct": 100,
+                           "question_submitted": 100,
+                           "base_exam_id": student["base_exam_id"],
+                           "exam_name": student["exam_name"],
+                           "user_exam_id": student["user_exam_id"],
+                           "started_time": student["started_at"]["ratings_count"]}
+        if "user_incomplete" in q.keys():
+            student_details["question_incomplete"] = i["user_incomplete"]
+        if "user_correct" in q.keys():
+            student_details["question_correct"] = i["user_correct"]
+        if "user_submitted" in q.keys():
+            student_details["question_submitted"] = i["user_submitted"]
+        qs.append(Row(**wines_details))
+    return questions_rows
+extract_details_from_json(extracted_data)
+extract_details_from_json(data_as_strings)
+extract_details_from_json(raw_data)
+extract_details_from_json(extracted_data.flatMap())
+extracted_data.flatMap(extract_details_from_json).toDF()
+data_as_strings.rdd.map(lambda x: json.loads(x.value)).flatMap(extract_details_from_json).toDF()
+raw_data.rdd.map(lambda x: json.loads(x.value)).flatMap(extract_details_from_json).toDF()
+raw_data.rdd.flatMap(extract_details_from_json).toDF()
+def extract_details_from_json(row):
+    student = json.loads(row.value)
+    qs = []
+    if "sequences" in student.keys():
+        if "questions" in student["sequences"].keys():
+            questions = student["sequences"]["questions"]
+    for i in qs:
+        student_details = {"question_id": i["id"],
+                           "question_incomplete": 100,
+                           "question_correct": 100,
+                           "question_submitted": 100,
+                           "base_exam_id": student["base_exam_id"],
+                           "exam_name": student["exam_name"],
+                           "user_exam_id": student["user_exam_id"],
+                           "started_time": student["started_at"]["ratings_count"]}
+        if "user_incomplete" in q.keys():
+            student_details["question_incomplete"] = i["user_incomplete"]
+        if "user_correct" in q.keys():
+            student_details["question_correct"] = i["user_correct"]
+        if "user_submitted" in q.keys():
+            student_details["question_submitted"] = i["user_submitted"]
+        qs.append(Row(**wines_details))
+    return questions_rows
+            
+raw_data.rdd.flatMap(extract_details_from_json).toDF()
+def extract_details_from_json(row):
+    student = json.loads(row.value)
+    qs = []
+    if "sequences" in student.keys():
+        if "questions" in student["sequences"].keys():
+            questions = student["sequences"]["questions"]
+    for i in qs:
+        student_details = {"question_id": i["id"],
+                           "question_incomplete": 100,
+                           "question_correct": 100,
+                           "question_submitted": 100,
+                           "base_exam_id": student["base_exam_id"],
+                           "exam_name": student["exam_name"],
+                           "user_exam_id": student["user_exam_id"],
+                           "started_time": student["started_at"]["ratings_count"]}
+        if "user_incomplete" in q.keys():
+            student_details["question_incomplete"] = i["user_incomplete"]
+        if "user_correct" in q.keys():
+            student_details["question_correct"] = i["user_correct"]
+        if "user_submitted" in q.keys():
+            student_details["question_submitted"] = i["user_submitted"]
+        qs.append(Row(**wines_details))
+    return qs
+raw_data.rdd.flatMap(extract_details_from_json).toDF()
+ raw_data = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","proj2").option("startingOffsets", "earliest").option("endingOffsets", "latest").load()
+raw_data = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","proj2").option("startingOffsets", "earliest").option("endingOffsets", "latest").load()
+extract_details_from_json(raw_data)
+raw_data.rdd.flatMap(extract_details_from_json).toDF()
+extracted_data = data_as_strings.rdd.map(lambda x: json.loads(x.value)).toDF()
+extracted_data.write.parquet("/tmp/extracted_data_edu")
+exit()
+raw_data = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","proj2").option("startingOffsets", "earliest").option("endingOffsets", "latest").load()
+data_as_strings=raw_data.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+data_as_strings.cache()
+data_as_strings.select('value').take(1)[0].value
+data_as_strings.show)_
+data_as_strings.show()
+spark.sql("SELECT sequences.questions FROM ed_data LIMIT 10").show()
+spark.sql("SELECT sequences FROM ed_data LIMIT 10").show()
+spark.sql("SELECT * FROM ed_data LIMIT 10").show()
+import json
+import spark.sql
+from pyspark.sql import Row
+spark.sql("SELECT * FROM ed_data LIMIT 10").show()
+extracted_data.registerTempTable('ed_data')
+data_as_strings.show()
+extracted_data = data_as_strings.rdd.map(lambda x: json.loads(x.value)).toDF()
+extracted_data.registerTempTable('ed_data')
+spark.sql(SELECT sequences from ed_data")
+spark.sql(SELECT sequences FROM ed_data")
+spark.sql(SELECT * FROM ed_data")
+spark.sql("SELECT DISTINCT exam_name, COUNT(user_exam_id) AS user_count FROM ed_data GROUP BY exam_name ORDER BY user_count DESC").show()
+spark.sql("SELECT DISTINCT exam_name, COUNT(user_exam_id) AS user_count, sequences.questions FROM ed_data GROUP BY exam_name ORDER BY user_count DESC").show()
+spark.sql("SELECT sequences FROM ed_data").show()
+spark.sql("SELECT sequences.questions FROM ed_data").show()
+spark.sql("SELECT sequences.questions.user_incomplete FROM ed_data").show()
+spark.sql("SELECT certification, exam_name, started_at, user_exam_id FROM ed_data LIMIT 10").show()
+spark.sql("SELECT COUNT(*) AS user_count, substring(started_at, 6, 2) AS Month FROM ed_data GROUP BY SUBSTRING(started_at, 6, 2) ORDER BY user_count DESC").show()
+exit()
+raw_data = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","proj2").option("startingOffsets", "earliest").option("endingOffsets", "latest").load()
+`raw_data.show()`
+raw_data.show()
+data_as_strings.show()
+data_as_strings=raw_data.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)
+data_as_strings=raw_data.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING))
+data_as_strings=raw_data.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+data_as_strings.select('value').take(1)[0].value
+def extract_details_from_json(row):
+    student = json.loads(row.value)
+    qs = []
+    if "sequences" in student.keys():
+        if "questions" in student["sequences"].keys():
+            questions = student["sequences"]["questions"]
+    for i in qs:
+        student_details = {"question_id": i["id"],
+                           "question_incomplete": 100,
+                           "question_correct": 100,
+                           "question_submitted": 100,
+                           "base_exam_id": student["base_exam_id"],
+                           "exam_name": student["exam_name"],
+                           "user_exam_id": student["user_exam_id"],
+                           "started_time": student["started_at"]["ratings_count"]}
+        if "user_incomplete" in q.keys():
+            student_details["question_incomplete"] = i["user_incomplete"]
+        if "user_correct" in q.keys():
+            student_details["question_correct"] = i["user_correct"]
+        if "user_submitted" in q.keys():
+            student_details["question_submitted"] = i["user_submitted"]
+        qs.append(Row(**student_details))
+    return qs
+json.loads(data_as_strings.select('value').take(2)[0].value)
+import json
+json.loads(data_as_strings.select('value').take(2)[0].value)
+json.loads(data_as_strings.select('value').take(8 )[0].value)
+spark.sql("SELECT sequences.questions.user_incomplete FROM ed_data").show()
+extracted_data.registerTempTable('ed_data')
+extracted_data = data_as_strings.rdd.map(lambda x: json.loads(x.value)).toDF()
+data_as_strings.cache()
+extracted_data = data_as_strings.rdd.map(lambda x: json.loads(x.value)).toDF()
+exit()
+raw_data = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","proj2").option("startingOffsets", "earliest").option("endingOffsets", "latest").load()
+data_as_strings=raw_data.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+import json
+import sys
+sys.stdout = open(sys.stdout.fileno(), mode='w', encoding='utf8', buffering=1)
+from pyspark import Row
+extracted_data = data_as_strings.rdd.map(lambda x: json.loads(x.value)).toDF()
+extracted_data.cache()
+extracted_data = data_as_strings.rdd.map(lambda x: json.loads(x.value)).toDF()
+exit()
+raw_data = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","proj2").option("startingOffsets", "earliest").option("endingOffsets", "latest").load()
+raw_data.cache()
+data_as_strings=raw_data.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+data_as_strings.cache()
+import json
+import sys
+from pyspark.sql import ROWfrom pyspark.sql import Row
+from pyspark.sql import Row
+extracted_data = data_as_strings.rdd.map(lambda x: json.loads(x.value)).toDF()
+extracted_data.cache()
+extracted_data.registerTempTable('ed_data')
+spark.sql("SELECT sequences.questions.user_incomplete FROM ed_data").show()
+spark.sql("SELECT DISTINCT exam_name, COUNT(user_exam_id) AS user_count FROM ed_data GROUP BY exam_name ORDER BY user_count DESC").show()
+spark.sql("SELECT COUNT(*) AS user_count, substring(started_at, 6, 2) AS Month FROM ed_data GROUP BY SUBSTRING(started_at, 6, 2) ORDER BY user_count DESC").show()
+spark.sql("SELECT SUM(CASE WHEN certification = true THEN 1 ELSE 0 END) AS count, exam_name FROM ed_data GROUP BY exam_name ORDER BY count").show()
+exit()

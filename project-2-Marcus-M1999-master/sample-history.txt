@@ -1,0 +1,396 @@
+    1  git add README.md
+    2  git branch
+    3  git status
+    4  cd w205/
+    5  cd project-1-Marcus-M1999/
+    6  git branch
+    7  git add README.md
+    8  git commit -m "updated"
+    9  git config --global user.email "marcusmanos@berkeley.edu"
+   10  git config --global user.name "Marcus Manos"
+   11  git commit -m "updated"
+   12  git add *
+   13  git commit -m "updated"
+   14  git add README.md 
+   15  git commit -m "updated"
+   16  git add README.md 
+   17  git commit -m "updated"
+   18  git push
+   19  git push --set-upstream origin newbranch
+   20  git push
+   21  git pull
+   22  git branch
+   23  git branch master
+   24  git checkout master
+   25  git branch
+   26  git pull
+   27  git branch
+   28  ls
+   29  cs ...
+   30  cd ...
+   31  cd /w205/
+   32  cd ~
+   33  cd w205/
+   34  curl -L -o annot_fpid.json https://goo.gl/qWiu7d
+   35  curl -L -o lp_data.csv https://goo.gl/FDFPYB
+   36  bg query --use_legacy_sql=false 'SELECT COUNT(DISTINCT station_id)
+   37  FROM  `bigquery-public-data.san_francisco.bikeshare_status`'
+   38  bq query --use_legacy_sql=false 'SELECT COUNT(DISTINCT station_id)
+   39  FROM  `bigquery-public-data.san_francisco.bikeshare_status`'
+   40  bq query --use_legacy_sql=false 'SELECT * FROM strange-radius-315021.section_99.Sample_table'
+   41  ls
+   42  cd project-1-Marcus-M1999/
+   43  mkdir w205
+   44  ls
+   45  cd w205/
+   46  ls
+   47  pwd
+   48  git clone https://github.com/mids-w205-schioberg5/course-content.git
+   49  git clone https://github.com/mids-w205-schioberg5/course-content.git
+   50  git clone https://github.com/mids-w205-schioberg/project-1-Marcus-M1999.git
+   51  ls
+   52  history
+   53  clear
+   54  ls
+   55  cd project-1-Marcus-M1999/
+   56  git branch
+   57  git checkout -b newbranch
+   58  git branch
+   59  ls
+   60  vim README.md 
+   61  ls
+   62  cd w205/
+   63  pip install redis
+   64  docker run --name myredis -d redis
+   65  docker stop myredis
+   66  docker ps
+   67  ls
+   68  cd project-1-Marcus-M1999/
+   69  docker ps
+   70  docker stop redis
+   71  docker rm redis
+   72  cd ~
+   73  ls
+   74  docker ps
+   75  docker-compose
+   76  cs w205/
+   77  cd w205/
+   78  ls
+   79  mkdir redi-standalone
+   80  cd redi-standalone/
+   81  cp ../course-content/05-Storing-Data-II/example-0-docker-compose.yml  docker-compose.yml
+   82  ls
+   83  vim docker-compose.yml 
+   84  vim docker-compose.yml 
+   85  docker-compose up -d
+   86  ipython
+   87  docker-compose down
+   88  cd ..
+   89  mkdir redis-cluster/
+   90  cd redis-cluster/
+   91  cp ../course-content/05-Storing-Data-II/example-1-docker-compose.yml docker-compose.yml
+   92  ls
+   93  vim docker-compose.yml 
+   94  docker-compose up -d
+   95  docker-compose ps
+   96  ipython
+   97  docker-compose exec mids bash
+   98  docker-compose ps
+   99  docker ps
+  100  docker-compose logs
+  101  docker-compose logs -f redis
+  102  docker-compose down
+  103  cd w205/
+  104  cd project-1-Marcus-M1999/
+  105  bq query --use_legacy_sql=false '
+  106      SELECT count(*)
+  107      FROM
+  108         `bigquery-public-data.san_francisco.bikeshare_trips`'
+  109  cd project-1-Marcus-M1999/bq query --use_legacy_sql=false ' SELECT count(trip_id) FROM `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips` 
+  110  SELECT count(trip_id) FROM `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips` 
+  111  exit()
+  112  bq query --use_legacy_sql=false 'SELECT count(trip_id) FROM `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips` '
+  113  bq query --use_legacy_sql=false 'SELECT min(start_date), max(start_date) FROM `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips` '
+  114  bq query --use_legacy_sql=false 'WITH cte AS '
+  115  ( SELECT DISTINCT(station_id), capacity
+  116  FROM `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_info`
+  117  )
+  118  SELECT SUM(capacity) FROM cte 
+  119  bq query --use_legacy_sql=false 'WITH cte AS (SELECT DISTINCT(station_id), capacity
+  120  FROM `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_info`
+  121  )
+  122  SELECT SUM(capacity) FROM cte'
+  123  git status
+  124  ls
+  125  cs w205/
+  126  cd w205/
+  127  ls
+  128  cd project-1-Marcus-M1999/
+  129  git status
+  130  git checkout assingment
+  131  git branch
+  132  git branch assingment
+  133  git branch
+  134  git checkout assingment
+  135  git add project_1.md
+  136  git add project_1.ipynb 
+  137  git commit -m "finished project :P"
+  138  git push origin assingment
+  139  git branch
+  140  cd w205/
+  141  ls
+  142  cd course-content/
+  143  cd w205/
+  144  mkdir kafka^C
+  145  cd kafka^C/
+  146  cp ../course-content/06-Transforming-Data/docker-compose.yml .
+  147  vim docker-compose.yml 
+  148  vim docker-compose.yml 
+  149  docker ps
+  150  docker-compose ps
+  151  docker-compose up -d
+  152  docker-compose ps
+  153  docker-compose logs kafka | grep -i started
+  154  docker-compose exec kafka^C kafka-topics --create --topic foo --replication-factor1 --if-not-exists --zookeeper zookeeper:32181
+  155  docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  156  docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
+  157  seq 5
+  158  docker-compose exec kafka bash -c "seq 42 | kafka-console-producer --request-required-acks 1 --broker-list localhost:29092 --topic foo && echo 'Produced 42 messages.'"
+  159  docker-compose exec kafka kafka-console-consumer --bootstrap-server localhost:29092 --topic foo --from-beginning --max-messages 42
+  160  kafka docker-compose down
+  161  kafka$ docker-compose down
+  162   docker-compose down
+  163  curl -L -o github-example-large.json https://goo.gl/Y4MD58
+  164  docker-compose up -d
+  165  docker-compose logs
+  166  docker-compose logs -f kafka
+  167  docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  168  docker-compose exec kafka kafka-topics --describe --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  169  docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
+  170  cat github-example-large.json 
+  171  cat github-example-large.json  | jq '.'
+  172  cat github-example-large.json  | jq '.[]'
+  173  cat github-example-large.json  | jq '.[]' -c
+  174  cat github-example-large.json  | jq '.[]' -c | wc -]
+  175  cat github-example-large.json  | jq '.[]' -c | wc -l
+  176  cat github-example-large.json  | jq '.[]' | wc -l
+  177  docker-compose exec mids bash -c "cat /w205/kafka/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
+  178  docker-compose down
+  179  . . 
+  180  ..
+  181  cd w205w205
+  182  cd ~/w205/
+  183  git clone https://github.com/mids-w205-schioberg/project-2-Marcus-M1999.git
+  184  cd project-2-Marcus-M1999/
+  185  ls
+  186  curl -L -o assessment-attempts-20180128-121051-nested.json https://goo.gl/ME6hjp`
+  187  exit()
+  188  :q
+  189  curl -L -o assessment-attempts-20180128-121051-nested.json https://goo.gl/ME6hjp`
+  190  curl -L -o assessment-attempts-20180128-121051-nested.json https://goo.gl/ME6hjp`
+  191  curl -L -o assessment-attempts-20180128-121051-nested.json https://goo.gl/ME6hjp`
+  192  cd w205/project-2-Marcus-M1999/
+  193  ls
+  194  docker-compose.yml
+  195  cp ../course-content/06-Transforming-Data/docker-compose.yml  .
+  196  ls
+  197  docker-compose down
+  198  cd w205/
+  199  mkdir spark-with-kafka
+  200  cd spark-with-kafka/
+  201  cp ../course-content/07-Sourcing-Data/docker-compose.yml .
+  202  ls
+  203  docker-compose up -d
+  204  vim docker-compose.yml 
+  205  docker-compose ps
+  206  docker ps
+  207  docker-compose logs -f kafka | grep -i started
+  208  docker-compose exec kafka kafka-topics --create --topic foo     --partitions 1     --replication-factor 1     --if-not-exists     --zookeeper zookeeper:32181
+  209  seq 5
+  210  docker-compose exec kafka   bash -c "seq 42 | kafka-console-producer \
+  211      --request-required-acks 1 \
+  212      --broker-list kafka:29092 \
+  213      --topic foo && echo 'Produced 42 messages.'"
+  214  docker-compose exec spark pyspark
+  215  docker-compose down
+  216  docker-compose up
+  217  docker-compose up -d
+  218  curl -L -o github-example-large.json https://goo.gl/Y4MD58
+  219  docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.'"
+  220  docker-compose exec mids bash -c "cat /w205/spark-with-kafka/github-example-large.json | jq '.[]' -c"
+  221  docker-compose exec mids bash -c "cat /w205/spark-with-kafka/github-example-large.json | jq '.[]' -c" | wc -l
+  222  docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
+  223  docker-compose exec mids bash -c "cat /w205/spark-with-kafka/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
+  224  docker-compose exec spark pyspark
+  225  docker-compose down
+  226  cs w205/project-2-Marcus-M1999/
+  227  cd w205/project-2-Marcus-M1999/
+  228  docker-compose up -d
+  229  dock-compose ps
+  230  docker-compose ps
+  231  ocker-compose logs zookeeper | grep -i binding
+  232  docker-compose logs zookeeper | grep -i binding
+  233  docker-compose exec pyspark
+  234  docker-compose exec spark pyspark
+  235  docker-compose exec spark pyspark
+  236  vi, docker-compose.yml
+  237  vim docker-compose.yml
+  238  docker-compose down
+  239  rm docker-compose.yml 
+  240  rm assessment-attempts-20180128-121051-nested.json 
+  241  curl -L -o assessment-attempts-20180128-121051-nested.json https://goo.gl/ME6hjp
+  242  cp ../course-content/07-Sourcing-Data/docker-compose.yml .
+  243  docker-compose up -d
+  244  vim docker-compose.yml
+  245  docker-compose exec kafka   kafka-topics     --create     --topic foo     --partitions 1     --replication-factor 1     --if-not-exists \
+  246  docker-compose exec kafka kafka-topics --create --topic proj2  --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  247  docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
+  248  docker-compose exec kafka kafka-topics --describe --topic proj2 --zookeeper zookeeper:32181
+  249  docker-compose exec spark pyspark
+  250  docker-compose exec mids bash -c "cat w205/project-2-Marcus-M1999/assessment-attempts-20180128-121051-nested.json | jq '.'"
+  251  docker-compose exec mids bash -c "cat w205/project-2-Marcus-M1999/assessment-attempts-20180128-121051-nested.json"
+  252  docker-compose exec mids bash -c "cat w205/project-2-Marcus-M1999/assessment-attempts-20180128-121051-nested.json"
+  253  head assessment-attempts-20180128-121051-nested.json
+  254  docker-compose exec mids bash -c "cat assessment-attempts-20180128-121051-nested.json"
+  255  docker-compose exec mids bash -c "cat w205/project-2-Marcus-M1999/assessment-attempts-20180128-121051-nested.json | jq '.[]' -c"
+  256  docker-compose exec spark pyspark
+  257  docker-compose exec mids bash -c "cat w205/project-2-Marcus-M1999/assessment-attempts-20180128-121051-nested.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced messages.'"
+  258  docker-compose exec mids bash -c "cat w205/project-2-Marcus-M1999/datafile.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced messages.'"
+  259  docker-compose exec mids bash -c "cat datafile.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced messages.'"
+  260  docker-compose exec mids bash -c "cat/w205/project-2-Marcus-M1999/datafile.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced messages.'"
+  261  docker-compose exec mids bash -c "cat /w205/project-2-Marcus-M1999/datafile.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced messages.'"
+  262  docker-down
+  263  docker-compose down
+  264  docker-compose up -d
+  265  docker-compose exec mids bash -c "cat w205/project-2-Marcus-M1999/datafile.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
+  266  docker-compose exec mids bash -c "cat /w205/project-2-Marcus-M1999/datafile.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
+  267  docker-compose exec spark pyspark
+  268  docker-down
+  269  docker-compose down
+  270  cd w205/
+  271  mkdir ~/w205/spark-with-kafka-and-hdfs
+  272  cd ~/w205/spark-with-kafka-and-hdfs
+  273  cp ~/w205/course-content//08-Querying-Data/docker-compose.yml .
+  274  docker compose up -d
+  275  docker-compose up -d
+  276  docker-compose exec cloudera hadoop fs -ls /tmp/
+  277  ls
+  278  docker-compose exec kafka kafka-topics --create --topic players --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  279  docker-compose exec kafka kafka-topics --create --topic players --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  280  curl -L -o players.json https://goo.gl/vsuCpZ
+  281  ls
+  282  docker-compose exec kafka kafka-topics --create --topic players --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  283  docker-compose down
+  284  ls
+  285  docker-compose up -d
+  286  docker-compose exec cloudera hadoop fs -ls /tmp/
+  287  docker-compose exec cloudera hadoop fs -ls /tmp/
+  288  docker-compose exec kafka kafka-topics --create --topic players --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  289  docker-compose exec mids bash -c "cat /w205/<your_workspace>/players.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t players"
+  290  docker-compose exec mids bash -c "cat /w205/sparl-with-kafka-and-hdfs/players.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t players"
+  291  docker-compose exec mids bash -c "cat /w205/spark-with-kafka-and-hdfs/players.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t players"
+  292  docker-compose exec spark pyspark
+  293  spark.sql("select commit.committer.name from commits limit 10").show()
+  294  docker-compose down
+  295  docker-compose exec cloudera hadoop fs -ls /tmp/
+  296  docker-compose exec kafka kafka-topics --create --topic commits --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  297  docker-compose up -d
+  298  cd w205/
+  299  ls
+  300   cd spark-with-kafka-and-hdfs/
+  301  docker-compose up -d
+  302  docker-compose exec kafka kafka-topics --create --topic commits --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  303  docker-compose exec mids bash -c "cat /w205/spark-with-kafka-and-hdfs/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t commits"
+  304  curl -L -o github-example-large.json https://goo.gl/Y4MD58
+  305  docker-compose exec mids bash -c "cat /w205/spark-with-kafka-and-hdfs/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t commits"
+  306  docker-compose down
+  307  cd w205/
+  308  cd project-2-Marcus-M1999/
+  309  docker ps
+  310  docker-compose exec spark cat /root/.python_history
+  311  docker-compose down
+  312  cd w205/
+  313  cs project-2-Marcus-M1999/
+  314  cd project-2-Marcus-M1999/
+  315  rm docker-compose.yml 
+  316  cp ~/w205/course-content//08-Querying-Data/docker-compose.yml .
+  317  docker-compose up -d
+  318  docker-compose exec kafka kafka-topics --create --topic proj2 --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  319  docker-compose exec mids bash -c "cat /w205/project-2-Marcus-M1999/datafile.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t players"
+  320  docker ps
+  321  vim docker-compose.yml 
+  322  docker-compose exec spark pyspark
+  323  docker-compose exec mids bash -c "cat /w205/project-2-Marcus-M1999/datafile.json"
+  324  docker-compose exec mids bash -c "cat /w205/project-2-Marcus-M1999/datafile.json | jq '.[]' -c"
+  325  docker-compose exec mids bash -c "cat /w205/project-2-Marcus-M1999/datafile.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced many messages.'"
+  326  messages = spark   .read   .format("kafka") \
+  327    .option("kafka.bootstrap.servers", "kafka:29092") \
+  328    .option("subscribe","foo") \
+  329    .option("startingOffsets", "earliest") \
+  330    .option("endingOffsets", "latest") \
+  331  messages = spark   .read   .format("kafka") \
+  332    .option("kafka.bootstrap.servers", "kafka:29092") \
+  333  messages = spark.readf.ormat("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","proj2").option("startingOffsets", "earliest").option("endingOffsets", "latest").load() 
+  334  messages = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","proj2").option("startingOffsets", "earliest").option("endingOffsets", "latest").load() 
+  335  messages = spark.read().format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","proj2").option("startingOffsets", "earliest").option("endingOffsets", "latest").load() 
+  336  messages = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","proj2").option("startingOffsets", "earliest").option("endingOffsets", "latest").load() 
+  337  docker-compose exec spark pyspark
+  338  docker-compose exec mids bash -c "cat /w205/project-2-Marcus-M1999/datafile.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t proj2 && echo 'Produced many  messages.'"
+  339  docker-compose exec spark pyspark
+  340  git branch assingment
+  341  cd w205/
+  342  cd project-2-Marcus-M1999/
+  343  git branch assingment
+  344  git checkout assingment
+  345  git clone https://github.com/mids-w205-schioberg/project-2-Marcus-M1999.git
+  346  rm project-2-Marcus-M1999/
+  347  git status
+  348  git add *
+  349  git commit -m "added docker-compose file, json"
+  350  git push origin assingment
+  351  docker-compose exec spark cat /root/.python_history
+  352  docker-compose exec spark cat /root/.python_history
+  353  docker-compose exec kafka kafka-topics --create --topic proj2 --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  354  cd w205/
+  355  cd project-2-Marcus-M1999/
+  356  docker-compose exec kafka kafka-topics --create --topic proj2 --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  357  docker-compose up -d
+  358  docker-compose exec kafka kafka-topics --create --topic proj2 --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  359  docker-compose exec mids bash -c "cat /w205/project-2-Marcus-M1999/datafile.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t proj2"
+  360  docker-compose exec mids bash -c "cat /w205/project-2-Marcus-M1999/datafile.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t proj2"
+  361  docker-compose exec kafka kafka-topics --create --topic proj2 --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  362  docker ps
+  363  docker-compose exec kafka kafka-topics --create --topic proj2 --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  364  docker-down
+  365  docker-compose down
+  366  docker-compose up -d
+  367  docker-compose exec kafka kafka-topics --create --topic proj2 --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  368  vim docker-compose.yml 
+  369  bin/zookeeper-server-start.sh config/zookeeper.properties
+  370  bin/kafka-server-start.sh config/server.properties
+  371  docker ps
+  372  docker-down
+  373  docker-compose down
+  374  docker-compose ps
+  375  docker-compose down
+  376  cd w205/
+  377  cd project-2-Marcus-M1999/
+  378  docker-compose up -d
+  379  docker-compose exec kafka kafka-topics --create --topic proj2 --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  380  docker-compose ps
+  381  docker-compose logs -f kafka
+  382  docker-compose ps
+  383  docker-compose exec kafka kafka-topics --create --topic proj2 --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  384  docker-compose exec mids bash -c "cat /w205/project-2-Marcus-M1999/datafile.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t proj2"
+  385  Docker-exec spark pyspark
+  386  Docker-compose exec spark pyspark
+  387  docker-compose exec spark pyspark
+  388  docker-compose exec cloudera hadoop fs -ls /tmp/
+  389  docker ps
+  390  docker-compose exec spark pyspark
+  391  docker-compose exec spark cat /root/.python_history
+  392  git add *
+  393  git commit -m "updating- finished SQL queries, unrolled JSON"
+  394  git push origin assingment
+  395  history > <user-name>-history.txt
+  396  history > sample-history.txt
